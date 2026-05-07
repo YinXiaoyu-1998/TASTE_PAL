@@ -1,41 +1,183 @@
-# TASTE_PAL Meta Repository
+# Taste Pal
 
-This repository is the parent orchestration repo for Taste Pal. It tracks the frontend and backend as Git submodules and pins a known-good combined version.
+桌边 AI 伙伴与语音点餐助手。
 
-## Submodules
+Taste Pal 是面向中小餐饮门店的桌边 AI 伙伴 MVP。它不仅能帮助顾客点餐、推荐菜品和维护购物车，也希望像一个“AI 桌宠”一样参与用餐过程：主动欢迎、轻松聊天、调动气氛、给出有温度的回应，让等待上菜和多人聚餐的时间更有陪伴感和娱乐感。
 
-- `TASTE_PAL_FRONTEND` → `git@github.com:YinXiaoyu-1998/TASTE_PAL_FRONTEND.git`
-- `TASTE_PAL_BACKEND` → `git@github.com:YinXiaoyu-1998/TASTE_PAL_BACKEND.git`
+## 基本信息
 
-## Clone and Initialize
+| 项目 | 内容 |
+| --- | --- |
+| 赛道 | AI Coding |
+| 赛区 | 北京 |
+| 团队名 | 殷实麦家 |
+| 主联系人 | 殷啸宇 `<consyinxy@gmail.com>` |
+| 作品形态 | 代码、移动端 Web PWA、离线 Android Beta APK |
 
-```bash
-git clone git@github.com:YinXiaoyu-1998/TASTE_PAL.git
-cd TASTE_PAL
-git submodule update --init --recursive
+## 团队介绍
+
+| 角色 | 姓名 | 简介与背景 |
+| --- | --- | --- |
+| 队长 | 殷啸宇 | AI 全栈开发工程师 |
+
+## 一、问题陈述
+
+### 1. 解决谁的什么问题？
+
+Taste Pal 主要解决中小餐饮门店“桌边体验单薄”的问题：餐桌上通常只有菜单和扫码页，顾客能完成下单，但缺少互动、陪伴、趣味和被照顾的感觉。
+
+对顾客来说，一顿饭不只是把菜点完，还包括入座后的欢迎感、等菜时的陪伴感、聚餐时的气氛、选择困难时的轻松建议，以及被理解、被回应的情绪价值。传统扫码点餐效率很高，但体验偏工具化；人工服务有温度，但高峰期很难稳定覆盖每一桌。
+
+Taste Pal 希望把一个“会聊天、会推荐、会记单、会活跃气氛”的 AI 伙伴放到餐桌上。点餐和推销仍然是商业闭环，但产品更长期的方向，是让餐厅多一个有记忆、有性格、有娱乐表达的桌边数字角色。
+
+### 2. 以前怎么解决？
+
+常见方案包括纸质菜单、扫码点餐、小程序、收银/POS 系统、店内屏幕和人工服务员推荐。这些方案各有优势，但通常存在几个不足：
+
+- 纸质菜单和扫码菜单偏“信息展示”，缺少情绪反馈和互动陪伴。
+- 人工服务有温度，但依赖服务员状态和门店忙闲程度，高峰期难以稳定复制。
+- 传统点餐系统更关注效率、支付和订单记录，不擅长持续对话、娱乐互动和个性化表达。
+- 店内营销通常是静态海报或固定话术，很难根据每桌顾客的语境自然融入。
+
+### 3. 为什么用 AI 更好？
+
+AI 适合处理“自然表达 + 多轮上下文 + 个性化语气 + 业务动作”的组合问题。顾客可以问它吃什么，也可以和它闲聊、让它推荐适合小朋友的菜、让它用更有趣的方式介绍招牌菜，或者在等菜时获得轻松的互动。
+
+相比静态菜单，AI 能把餐桌体验从“浏览和点击”升级成“对话、陪伴和轻娱乐”。它可以在合适的时候完成点餐和推销，也可以在不打扰顾客的前提下提供情绪价值。
+
+## 二、解决方案
+
+### 1. 产品是什么？
+
+Taste Pal 是一个语音优先的桌边 AI 伙伴。当前版本以餐厅点餐为第一个落地场景，未来会逐步加入更多娱乐化表达、角色人格、桌边互动和情绪陪伴能力。
+
+前端提供移动端优先的单屏 PWA 和离线 Android Beta Demo；后端提供 FastAPI 服务，负责会话、语音识别、LLM 编排、菜单检索、购物车操作、语音合成和音频资源返回。
+
+### 2. 典型使用场景
+
+顾客坐到餐桌后打开店内平板或网页应用。Taste Pal 先以一个拟人化的桌边伙伴身份欢迎顾客，不只是询问“要点什么”，也可以用轻松的方式打开话题、介绍今日推荐、缓解选择困难。
+
+> “我们四个人，有一个小朋友，不要太辣，帮我推荐几道招牌菜。”
+
+系统会结合人数、口味和菜品信息给出建议，也可以用更有趣的表达方式介绍菜品。顾客继续说“把这几道都加到购物车”“不要海鲜，换一个素菜”“确认下单”时，Taste Pal 再把对话自然转成点餐动作。
+
+### 3. 核心功能与亮点
+
+- 桌边陪伴感：用自然语音欢迎顾客、回应顾客，让餐桌多一个可以互动的 AI 角色。
+- 情绪价值：通过更亲切、有温度的表达缓解等待、选择困难和多人聚餐中的沟通成本。
+- 娱乐价值：未来可扩展为带角色人格的 AI 桌宠，加入趣味问答、节日氛围、互动小游戏、拍照打卡话术等体验。
+- 语音优先交互：支持自动聆听、语音活动检测、ASR 转写、助手语音播报和暂停聆听。
+- 个性化推荐与自然推销：根据人数、口味、忌口和上下文介绍菜品，让推荐更像服务员建议，而不是硬广。
+- 点餐闭环：保留菜单检索、购物车修改、查看购物车和确认下单能力，确保娱乐与陪伴最终能服务门店经营。
+- 离线演示 APK：`/beta-app` 可打包为 Capacitor Android Beta APK，使用本地剧本、菜单、图片和预生成音频，不依赖后端即可演示。
+
+## 三、技术或创意实现
+
+### 1. 使用的 AI 模型、API 与工具
+
+- Qwen OpenAI-compatible Chat API：多轮对话、工具调用、最终回复生成。
+- DashScope ASR：将顾客语音转写为中文文本。
+- DashScope TTS / Qwen TTS Realtime：生成助手语音和流式语音播报。
+- DashScope Embedding：为菜单内容生成向量。
+- ChromaDB：本地持久化菜单向量索引。
+- ffmpeg：将浏览器录音格式转为 ASR 更稳定处理的音频格式。
+
+当前默认模型配置可在 `TASTE_PAL_BACKEND/app/core/config.py` 中看到，包括 `qwen3.6-plus`、`text-embedding-v4`、`qwen3-asr-flash`、`qwen3-tts-flash` 和 `qwen3-tts-instruct-flash-realtime`。
+
+### 2. 技术架构
+
+```text
+顾客 / 餐桌平板
+  ↓
+React + Vite PWA / Capacitor Android Beta
+  ↓  文本、音频、SSE
+FastAPI Backend
+  ├─ Session：内存会话、历史、购物车、人数/偏好上下文
+  ├─ Retrieval：菜单 JSON + DashScope Embedding + Chroma / 关键词回退
+  ├─ LLM Orchestration：Qwen 对话 + 工具调用 + 启发式兜底
+  ├─ Voice：DashScope ASR + TTS / Realtime TTS
+  └─ Assets：本地生成并临时提供 TTS 音频文件
 ```
 
-## Daily Workflow
+前端主要位于 `TASTE_PAL_FRONTEND/`，核心路由为：
 
-1. Work inside submodules as usual:
-   - commit/push in `TASTE_PAL_FRONTEND`
-   - commit/push in `TASTE_PAL_BACKEND`
-2. Return to parent repo root.
-3. Stage updated submodule pointers:
-   ```bash
-   git add TASTE_PAL_FRONTEND TASTE_PAL_BACKEND
-   git commit -m "Bump frontend/backend submodule pointers"
-   git push
-   ```
+- `/app`：真实后端驱动的点餐应用。
+- `/beta-app`：离线剧本演示入口，默认跳转到 `/beta-app/conversation-1`。
 
-## Update an Existing Clone
+后端主要位于 `TASTE_PAL_BACKEND/`，核心接口前缀为 `/api/v1`：
 
-```bash
-git pull
-git submodule update --init --recursive
-```
+- `POST /sessions`：创建或恢复会话。
+- `POST /sessions/{session_id}/opening`：生成开场欢迎语。
+- `POST /sessions/{session_id}/turns/text`：处理文字点餐轮次。
+- `POST /sessions/{session_id}/turns/voice`：处理语音点餐轮次。
+- `POST /sessions/{session_id}/turns/voice/stream`：处理流式语音轮次。
+- `POST /sessions/{session_id}/checkout`：演示下单，清空购物车并保留会话上下文。
+- `POST /sessions/{session_id}/reset`：重置会话。
+- `GET /health/live` / `GET /health/ready`：健康检查。
 
-## Scope of This Parent Repo
+### 3. 关键技术亮点
 
-- Tracked: `.gitignore`, `.gitmodules`, this `README.md`, and two submodule entries.
-- Ignored by default: everything else under this folder unless explicitly allowlisted.
+**把角色表达和业务动作分开。**  
+Taste Pal 可以用更拟人化、更有情绪价值的方式说话，但真正修改购物车、搜索菜品、提交订单时仍通过结构化工具完成。这样既保留娱乐感，也避免 AI 随意编造菜品、价格或订单状态。
+
+**语音体验围绕真实餐桌氛围设计。**  
+前端有自动聆听、预录音片段、静音结束判断、手动录音兜底和助手播报后的继续聆听逻辑；后端支持普通语音请求和 SSE 流式请求，使体验更接近一个随时在桌边响应的 AI 伙伴。
+
+**MVP 可演示，也能逐步产品化。**  
+当前代码既有连接后端和模型的真实 `/app`，也有可离线运行的 `/beta-app` Android Demo，便于展示“桌边角色 + 点餐动作”的完整交互。仓库中还保留了 Postgres、餐厅鉴权、订单持久化等下一阶段 ADR，说明系统边界和演进方向已经被拆分出来。
+
+## 四、当前进展
+
+### 1. 已经做到哪一步？
+
+已实现的部分：
+
+- 前端移动端 PWA 主界面、聊天记录、推荐菜卡片、购物车抽屉、下单成功提示。
+- 语音优先循环，包括自动录音、VAD、流式提交、助手语音播放和文本输入兜底。
+- 后端 FastAPI 服务、会话生命周期、菜单加载、购物车状态、结账演示流程。
+- Qwen + 工具调用的点餐编排，以及 LLM 不可用时的启发式兜底。
+- DashScope ASR、TTS、Embedding 和本地 Chroma 菜单检索。
+- 前后端单元/集成测试。
+- 离线 Android Beta Demo 打包脚本。
+
+当前仍是 MVP / Demo 阶段。现阶段重点验证语音交互、桌边陪伴感、推荐体验和点餐闭环。真实支付、厨房出单、订单持久化、门店账号登录、权限鉴权和多门店部署尚未在主代码路径中完成。
+
+### 2. 是否有用户在用？反馈如何？
+暂时没有实际用户使用 预计下周开始推广到实际门店
+
+### 3. 接下来计划
+- 增强 AI 桌宠方向的角色人格、语气风格、娱乐互动和情绪陪伴能力。
+- 设计更多餐桌场景剧本，例如等位/等菜陪伴、生日祝福、儿童互动、节日营销和趣味推荐。
+- 将当前内存会话迁移到 Postgres，保证服务重启后会话和订单不丢失。
+- 实现餐厅账号、JWT 鉴权和设备登录，避免开放接口被滥用并支持多门店隔离。
+- 将演示下单升级为持久化订单记录，并预留与 POS、厨房打印或美团等外部系统的集成空间。
+- 完善菜单和营销内容管理能力，让门店可以维护菜品、价格、图片、过敏原、推荐标签和角色话术。
+- 做真实门店试点，收集顾客互动意愿、停留时长、推荐采纳率、点餐转化率和顾客满意度。
+
+## 五、影响力与可持续性
+
+### Coding 与出海赛道
+
+**目标用户群规模：** 中小规模餐饮商铺，尤其是希望提升桌边互动体验、打造差异化记忆点、同时保留点餐转化能力的门店。
+
+**商业化路径或用户增长策略：** 先利用餐饮圈人脉在部分门店试点部署，验证顾客是否愿意和桌边 AI 互动，以及 AI 推荐是否能带来加购和复购价值。跑通后可按门店或设备数量订阅收费，并扩展角色皮肤、节日活动、营销剧本等增值能力。
+
+**接下来 3 个月的关键指标：**
+- 在至少 4 家门店中完成试点部署或演示验证。
+- 完成真实订单持久化和基础门店鉴权。
+- 收集每家门店的顾客互动率、AI 推荐采纳率、加购率、人工介入率和顾客满意度。
+- 打磨一套可复用的门店上线流程，包括菜单录入、角色话术配置、设备安装、API Key 配置和现场培训。
+
+## 六、许可证
+
+本项目采用 `PolyForm Noncommercial License 1.0.0`。你可以将本项目用于学习、研究、实验和其他非商业用途；如需商业使用，必须事先获得作者的书面授权。
+
+This project is available for learning, research, experimentation, and other non-commercial use only. Commercial use requires prior written permission from the author.
+
+## 七、附加材料
+- Demo 视频：待补充
+- 在线体验：无
+
+## 评审参考
+
+本仓库通过 HackAgent 平台进行 AI 智能评审，评审依据为 README 全文和仓库内容。建议重点关注 5 个维度：问题真实性、解决方案完整度、技术或创意亮点、表达清晰度、影响力或潜力。

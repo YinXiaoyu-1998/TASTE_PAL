@@ -2,5 +2,7 @@
 !/.gitignore
 !/.gitmodules
 !/README.md
+!/LICENSE
+!/LICENSE*
 !/TASTE_PAL_FRONTEND
 !/TASTE_PAL_BACKEND
