@@ -1,0 +1,6 @@
+[submodule "TASTE_PAL_FRONTEND"]
+	path = TASTE_PAL_FRONTEND
+	url = git@github.com:YinXiaoyu-1998/TASTE_PAL_FRONTEND.git
+[submodule "TASTE_PAL_BACKEND"]
+	path = TASTE_PAL_BACKEND
+	url = git@github.com:YinXiaoyu-1998/TASTE_PAL_BACKEND.git
